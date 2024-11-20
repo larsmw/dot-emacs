@@ -7,6 +7,7 @@
 ;;; Code:
 (require 'package)
 
+;;; Start package configuration
 (add-to-list 'package-archives
              '(("melpa" . "https://melpa.org/packages/")
                ("org"   . "https://orgmode.org/elpa/")
@@ -17,12 +18,6 @@
 
 (eval-when-compile
   (require 'use-package))
-
-(tool-bar-mode -1)
-
-(use-package which-key
-  :ensure t
-  :config (which-key-mode))
 
 (add-to-list 'load-path "~/.emacs.d/elpa/")
 (add-to-list 'load-path "~/.emacs.d/elpa/geben/")
@@ -36,6 +31,14 @@
   :config
     (auto-package-update-maybe)
     (auto-package-update-at-time "23:50"))
+
+
+;;; Buffer configuration
+(tool-bar-mode -1)
+
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
 
 
 (show-paren-mode 1)
@@ -102,7 +105,7 @@
 ;;(nginx-mode 1)
 
 (require 'php-mode)
-(define-key php-mode-map (kbd "C-c g") 'counsel-etags-find-tag-at-point)
+(define-key php-mode-map (kbd "C-c g") 'ac-php-find-symbol-at-point)
 
 (add-hook 'php-mode-hook
 	  (lambda ()
