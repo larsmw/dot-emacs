@@ -1,0 +1,1 @@
+("~/src/dot-emacs/" "~/src/jasen/" "~/src/linkhub/" "~/src/php-language-server/" "~/src/search-engine/" "~/src/emacs/build/")

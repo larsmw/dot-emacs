@@ -1,0 +1,2 @@
+;; Generated package description from dired-git-info.el  -*- no-byte-compile: t -*-
+(define-package "dired-git-info" "0.3.1" "Show git info in dired" '((emacs "25")) :commit "bd8556eef10e57b175406c117f18e1953422c803" :authors '(("Clemens Radermacher" . "clemera@posteo.net")) :maintainer '("Clemens Radermacher" . "clemera@posteo.net") :keywords '("dired" "files") :url "https://github.com/clemera/dired-git-info")
