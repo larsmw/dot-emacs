@@ -1,4 +1,4 @@
-;;; treemacs-mode.el --- A tree style file viewer package -*- lexical-binding: t -*-
+B;;; treemacs-mode.el --- A tree style file viewer package -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2024 Alexander Miller
 
@@ -355,7 +355,7 @@ Will simply return `treemacs--eldoc-msg'."
   (electric-indent-local-mode -1)
   (visual-line-mode -1)
   (font-lock-mode -1)
-  (jit-lock-mode -1)
+  (jit-lock-mode nil)
   (buffer-disable-undo)
   ;; fringe indicator must be set up right here, before hl-line-mode, since activating hl-line-mode will
   ;; invoke the movement of the fringe overlay that would otherwise be nil

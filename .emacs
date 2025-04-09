@@ -11,7 +11,7 @@
 (add-to-list 'package-archives
              '(("org"   . "https://orgmode.org/elpa/")
                ("elpa"  . "https://elpa.org/packages/")
-	       ("gnu-devel" . "https://elpa.gnu.org/devel")
+               ("gnu-devel" . "https://elpa.gnu.org/devel")
 	     ))
 
 (package-initialize)
@@ -20,11 +20,12 @@
   (require 'use-package))
 
 (add-to-list 'load-path "~/.emacs.d/elpa/")
-;; (add-to-list 'load-path "~/.emacs.d/swiper")
+(add-to-list 'load-path "~/.emacs.d/dap-mode/")
 ;; (add-to-list 'load-path "~/.emacs.d/counsel-projectile")
 (add-to-list 'load-path "~/.emacs.d/php-mode/")
 
 ;; (use-package swiper)
+
 
 (use-package auto-package-update
   :custom
@@ -34,6 +35,34 @@
   :config
     (auto-package-update-maybe)
     (auto-package-update-at-time "23:50"))
+
+;; Duplicate line
+(global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y")
+
+;;; Set global fonts
+(custom-set-faces
+ '(default (
+            (t (
+                :inherit nil
+                         :extend nil
+                         :stipple nil
+                         :background "#2e3436"
+                         :foreground "#eeeeec"
+                         :inverse-video nil
+                         :box nil
+                         :strike-through nil
+                         :overline nil
+                         :underline nil
+                         :slant normal
+                         :weight light
+                         :height 100
+                         :width normal
+                         :foundry "JB"
+                         :family "JetBrains Mono")))
+           )
+ )
+
+
 
 
 ;;; Buffer configuration
@@ -95,17 +124,30 @@
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
+
 (use-package flycheck
   :ensure t
   :init
   (global-flycheck-mode t))
 
-;; (display-line-numbers-mode 1)
+(display-line-numbers-mode 1)
 
 ;;(use-package nginx-mode)
 ;;(require 'nginx-mode)
 ;;(nginx-mode 1)
 
+(use-package lsp-mode
+  :ensure t
+  :config
+  (setq lsp-headerline-breadcrumb-enable nil) ;; works
+  (setq lsp-enable-symbol-highlighting nil) ;; works
+  (setq lsp-signature-render-documentation nil)
+  (setq lsp-completion-provider :none) ;; works
+  (setq lsp-diagnostics-provider :flymake) ;; underline error
+  )
+
+(require 'lsp-mode)
+(add-hook 'php-mode-hook #'lsp)
 
 (require 'php-mode)
 (define-key php-mode-map (kbd "C-c g") 'ac-php-find-symbol-at-point)
@@ -115,46 +157,51 @@
             (auto-complete-mode t)
             (require 'ac-php)
             (setq ac-sources '(ac-source-php))
-
+            (subword-mode 1)
             (yas-global-mode 1)
 
 	    (ac-php-core-eldoc-setup)
 
-	    (display-line-numbers-mode 1)
+;;	    (display-line-numbers-mode 1)
 
             (define-key php-mode-map (kbd "C-]")
 			'ac-php-find-symbol-at-point)
             (define-key php-mode-map (kbd "C-t")
 			'ac-php-location-stack-back)))
 
-(add-hook 'php-mode-hook 'eglot-ensure)
-
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-              '(php-mode . ("php" "--stdio"))))
 
 
-(defun eglot--post-self-insert-hook ()
-  "Set `eglot--last-inserted-char', maybe call on-type-formatting."
-  (setq eglot--last-inserted-char last-input-event)
-  (let ((ot-provider (eglot--server-capable :documentOnTypeFormattingProvider))
+
+;;(add-hook 'php-mode-hook 'eglot-ensure)
+
+;; Dont mix eglot and lsp...
+;;; (with-eval-after-load 'eglot
+;;   (add-to-list 'eglot-server-programs
+;;               '(php-mode . ("php" "--stdio"))))
+
+
+;;(defun eglot--post-self-insert-hook ()
+;;  "Set `eglot--last-inserted-char', maybe call on-type-formatting."
+;;  (setq eglot--last-inserted-char last-input-event)
+;;  (let ((ot-provider (eglot--server-capable :documentOnTypeFormattingProvider))
         ;; transform carriage return into line-feed
-        (adjusted-ie (if (= last-input-event 13) 10 last-input-event)))
-    (when (and ot-provider
-               (ignore-errors ; github#906, some LS's send empty strings
-                 (or (eq adjusted-ie
-                         (seq-first (plist-get ot-provider :firstTriggerCharacter)))
-                     (cl-find adjusted-ie
-                              (plist-get ot-provider :moreTriggerCharacter)
-                              :key #'seq-first))))
-      (eglot-format (point) nil adjusted-ie))))
+;;        (adjusted-ie (if (= last-input-event 13) 10 last-input-event)))
+;;    (when (and ot-provider
+;;               (ignore-errors ; github#906, some LS's send empty strings
+;;                 (or (eq adjusted-ie
+;;                         (seq-first (plist-get ot-provider :firstTriggerCharacter)))
+;;                     (cl-find adjusted-ie
+;;                              (plist-get ot-provider :moreTriggerCharacter)
+;;                              :key #'seq-first))))
+;;      (eglot-format (point) nil adjusted-ie))))
 
-(use-package dap-mode)
-(use-package dap-php)
-;(use-package dap-node)
-;(require 'dap-node)
-;(dap-node-setup)
-(require 'dap-php)
+;; (use-package dap-mode)
+;; (use-package dap-php)
+;; (use-package dap-node)
+;; (require 'dap-node)
+;; (dap-node-setup)
+
+;; (require 'dap-php)
 
 (dap-mode 1)
 (dap-ui-mode 1)
@@ -182,6 +229,10 @@
   :ensure t
   :mode "\\.js\\'")
 
+(use-package web-mode
+  :ensure t
+  :mode "\\.twig\\'")
+
 (use-package sass-mode
   :ensure t)
 
@@ -196,13 +247,17 @@
 (use-package org)
 ;; (use-package hlinum)
 
-(global-nlinum-mode 1)
+;; (global-nlinum-mode 1)
 
 ;; This highlights the current line.
 (global-hl-line-mode t)
 
 (defalias 'list-buffers 'ibuffer)
 
+(setq counsel-grep-base-command
+      "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+
+(global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
 
 ;;; .emacs ends here
 (custom-set-variables
@@ -210,10 +265,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages
+   '(ac-php consult-eglot consult-projectile counsel csv-mode dap-mode
+            dape dired-git dired-git-info flycheck ggtags magit
+            nginx-mode phpinspect rjsx-mode sass-mode web-mode
+            yaml-mode yasnippet-snippets)))
