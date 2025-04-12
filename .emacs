@@ -122,7 +122,8 @@
    '(ac-php consult-eglot consult-projectile counsel csv-mode dap-mode
             dape diff-hl dired-git dired-git-info flycheck ggtags
             magit nginx-mode phpinspect rjsx-mode sass-mode web-mode
-            yaml-mode yasnippet-snippets)))
+            yaml-mode yasnippet-snippets))
+ '(safe-local-variable-values '((byte-compile-warning))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

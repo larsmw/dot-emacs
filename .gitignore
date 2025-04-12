@@ -4,4 +4,5 @@
 .emacs.d/session*
 .emacs.d/projectile-bookmarks.eld
 .emacs.d/ac-comphist.dat
-
+.emacs.d/projects
+.emacs.d/transient/**
