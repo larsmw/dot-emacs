@@ -1,2 +1,0 @@
-;; Generated package description from ggtags.el  -*- no-byte-compile: t -*-
-(define-package "ggtags" "0.9.0" "emacs frontend to GNU Global source code tagging system" '((emacs "25")) :commit "a0809f5241d9accceb161ca40374680799021f04" :authors '(("Leo Liu" . "sdl.web@gmail.com")) :maintainer '("Leo Liu" . "sdl.web@gmail.com") :keywords '("tools" "convenience") :url "https://github.com/leoliu/ggtags")
