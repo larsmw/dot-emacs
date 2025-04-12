@@ -1261,7 +1261,7 @@
 		    ("Clemens Radermacher" . "clemera@posteo.net"))
 		   (:commit . "bd8556eef10e57b175406c117f18e1953422c803"))])
  (dired-preview .
-		[(0 4 0)
+		[(0 5 0)
 		 ((emacs
 		   (28 1)))
 		 "Automatically preview file at point in Dired" tar
@@ -1270,7 +1270,7 @@
 		  (:maintainer "Protesilaos Stavrou" . "info@protesilaos.com")
 		  (:authors
 		   ("Protesilaos Stavrou" . "info@protesilaos.com"))
-		  (:commit . "6caf3b15802ddcbbb89ee7278e714c3158f76d83"))])
+		  (:commit . "5324b4a24528ce707e12907b1079bb6b36763a33"))])
  (disk-usage .
 	     [(1 3 3)
 	      ((emacs
@@ -1477,7 +1477,7 @@
 	   ("João Távora" . "joaotavora@gmail.com"))
 	  (:commit . "49f449bb5bc90bc1eca6b4a1f013d4c0b5460d65"))])
  (el-job .
-	 [(2 4 3)
+	 [(2 4 4)
 	  ((emacs
 	    (29 1)))
 	  "Contrived way to call a function using all CPU cores" tar
@@ -1486,7 +1486,7 @@
 	   (:maintainer "Martin Edström" . "meedstrom@runbox.eu")
 	   (:authors
 	    ("Martin Edström" . "meedstrom@runbox.eu"))
-	   (:commit . "b80bc0380edca448b1e856441659d8eb4d97a3f7"))])
+	   (:commit . "eb3058e44df3d694cd7b24e0bbb6f92e831ea53d"))])
  (el-search .
 	    [(1 12 6 1)
 	     ((emacs
@@ -1821,7 +1821,7 @@
 		("Philip Kaludercic" . "philipk@posteo.net"))
 	       (:commit . "671e53fdef9ed3fdb9ee768216d05b90e3ce592a"))])
  (filechooser .
-	      [(0 2 1)
+	      [(0 2 2)
 	       ((emacs
 		 (28 1))
 		(compat
@@ -1829,10 +1829,10 @@
 	       "An xdg-desktop-portal filechooser" tar
 	       ((:url . "https://codeberg.org/rahguzar/filechooser")
 		(:keywords "convenience" "files" "tools" "unix")
-		(:maintainer "rahguzar" . "rahguzar@zohomail.eu")
+		(:maintainer "rahguzar" . "rahguzar@mailbox.org")
 		(:authors
-		 ("rahguzar" . "rahguzar@zohomail.eu"))
-		(:commit . "62a9ef588331b06c818ea5db5a73e756f20fd13d"))])
+		 ("rahguzar" . "rahguzar@mailbox.org"))
+		(:commit . "7ccb253b0a6f16e129cb886a144199dce015b07c"))])
  (filladapt .
 	    [(2 12 2)
 	     ((emacs
@@ -2305,7 +2305,7 @@
 	   ("Durand" . "mmemmew@gmail.com"))
 	  (:commit . "5a57e52122fe483fa9bd39049c13a25334e408da"))])
  (indent-bars .
-	      [(0 8 2)
+	      [(0 8 3)
 	       ((emacs
 		 (27 1))
 		(compat
@@ -2316,7 +2316,7 @@
 		(:maintainer "J.D. Smith" . "jdtsmith+elpa@gmail.com")
 		(:authors
 		 ("J.D. Smith" . "jdtsmith+elpa@gmail.com"))
-		(:commit . "e1dbddc5afa2c0fe4c6cc2151142f4509c0cbcf0"))])
+		(:commit . "ea74161b460114afeeaeb849a10fdde651b48718"))])
  (inspector .
 	    [(0 38)
 	     ((emacs
@@ -3328,6 +3328,17 @@
 		 (:authors
 		  ("Hanno Perrey" . "hanno@hoowl.se"))
 		 (:commit . "020b03f299dad438f65d7bcbf93553b273fd7c33"))])
+ (org-mathsheet .
+		[(1 0)
+		 ((peg
+		   (1 0)))
+		 "Generate dynamic math worksheets" tar
+		 ((:url . "https://gitlab.com/ianxm/org-mathsheet")
+		  (:keywords "tools" "education" "math")
+		  (:maintainer "Ian Martins" . "ianxm@jhu.edu")
+		  (:authors
+		   ("Ian Martins" . "ianxm@jhu.edu"))
+		  (:commit . "3ef5907f2c9a79d5769ea027d5c80bf69bb9f2ea"))])
  (org-modern .
 	     [(1 7)
 	      ((emacs

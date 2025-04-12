@@ -247,7 +247,7 @@
 (use-package org)
 ;; (use-package hlinum)
 
-;; (global-nlinum-mode 1)
+(global-nlinum-mode 1)
 
 ;; This highlights the current line.
 (global-hl-line-mode t)

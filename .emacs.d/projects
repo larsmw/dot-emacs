@@ -1,2 +1,5 @@
 ;;; -*- lisp-data -*-
-(("/home/lars/src/jasen/") ("/home/lars/src/linkhub/"))
+(("/home/lars/src/jasen/") ("/home/lars/src/crm/")
+ ("/home/lars/src/linux-os/") ("/home/lars/src/linkhub/")
+ ("/home/lars/src/github/php-src/") ("/home/lars/src/civicrm/")
+ ("/home/lars/src/mail-reader/"))
