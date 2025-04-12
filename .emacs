@@ -15,15 +15,6 @@
 (load (expand-file-name "core/packages" config-dir))
 
 
-(use-package auto-package-update
-  :custom
-    (auto-package-update-interval 2)
-    (auto-package-update-prompt-before-update t)
-    (auto-package-update-hide-results 1)
-  :config
-    (auto-package-update-maybe)
-    (auto-package-update-at-time "23:50"))
-
 ;; Duplicate line
 (global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y")
 

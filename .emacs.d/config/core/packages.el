@@ -17,3 +17,13 @@
 ;; (add-to-list 'load-path "~/.emacs.d/counsel-projectile")
 (add-to-list 'load-path "~/.emacs.d/php-mode/")
 
+
+;;; Fetch updates for packages
+(use-package auto-package-update
+  :custom
+    (auto-package-update-interval 2)
+    (auto-package-update-prompt-before-update t)
+    (auto-package-update-hide-results 1)
+  :config
+    (auto-package-update-maybe)
+    (auto-package-update-at-time "20:50"))
