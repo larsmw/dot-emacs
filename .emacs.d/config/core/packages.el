@@ -1,3 +1,6 @@
+;; -*- lexical-binding: t; -*-
+
+
 (require 'package)
 
 ;;; Start package configuration

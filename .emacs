@@ -1,4 +1,5 @@
-;;; package --- Summary
+;;; package --- Summary  -*- lexical-binding: t; byte-compile-warning: nil  -*-
+
 
 ;;; Commentary:
 ;;; .emacs - Configuration
@@ -13,6 +14,8 @@
 (add-to-list 'load-path config-dir)
 
 (load (expand-file-name "core/packages" config-dir))
+(load (expand-file-name "web/webmode" config-dir))
+(load (expand-file-name "web/phpmode" config-dir))
 
 
 ;; Duplicate line
@@ -98,89 +101,18 @@
 ;; (use-package counsel-projectile
 ;;   :config (counsel-projectile-mode))
 
-(use-package magit
-  :commands (magit-status magit-get-current-branch)
-  :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
-
 
 (use-package flycheck
   :ensure t
   :init
   (global-flycheck-mode t))
 
-(display-line-numbers-mode 1)
 
 ;;(use-package nginx-mode)
 ;;(require 'nginx-mode)
 ;;(nginx-mode 1)
 
-(use-package lsp-mode
-  :ensure t
-  :config
-  (setq lsp-headerline-breadcrumb-enable nil) ;; works
-  (setq lsp-enable-symbol-highlighting nil) ;; works
-  (setq lsp-signature-render-documentation nil)
-  (setq lsp-completion-provider :none) ;; works
-  (setq lsp-diagnostics-provider :flymake) ;; underline error
-  )
 
-(require 'lsp-mode)
-(add-hook 'php-mode-hook #'lsp)
-
-(require 'php-mode)
-(define-key php-mode-map (kbd "C-c g") 'ac-php-find-symbol-at-point)
-
-(add-hook 'php-mode-hook
-	  (lambda ()
-            (auto-complete-mode t)
-            (require 'ac-php)
-            (setq ac-sources '(ac-source-php))
-            (subword-mode 1)
-            (yas-global-mode 1)
-
-	    (ac-php-core-eldoc-setup)
-
-;;	    (display-line-numbers-mode 1)
-
-            (define-key php-mode-map (kbd "C-]")
-			'ac-php-find-symbol-at-point)
-            (define-key php-mode-map (kbd "C-t")
-			'ac-php-location-stack-back)))
-
-
-
-
-;;(add-hook 'php-mode-hook 'eglot-ensure)
-
-;; Dont mix eglot and lsp...
-;;; (with-eval-after-load 'eglot
-;;   (add-to-list 'eglot-server-programs
-;;               '(php-mode . ("php" "--stdio"))))
-
-
-;;(defun eglot--post-self-insert-hook ()
-;;  "Set `eglot--last-inserted-char', maybe call on-type-formatting."
-;;  (setq eglot--last-inserted-char last-input-event)
-;;  (let ((ot-provider (eglot--server-capable :documentOnTypeFormattingProvider))
-        ;; transform carriage return into line-feed
-;;        (adjusted-ie (if (= last-input-event 13) 10 last-input-event)))
-;;    (when (and ot-provider
-;;               (ignore-errors ; github#906, some LS's send empty strings
-;;                 (or (eq adjusted-ie
-;;                         (seq-first (plist-get ot-provider :firstTriggerCharacter)))
-;;                     (cl-find adjusted-ie
-;;                              (plist-get ot-provider :moreTriggerCharacter)
-;;                              :key #'seq-first))))
-;;      (eglot-format (point) nil adjusted-ie))))
-
-;; (use-package dap-mode)
-;; (use-package dap-php)
-;; (use-package dap-node)
-;; (require 'dap-node)
-;; (dap-node-setup)
-
-;; (require 'dap-php)
 
 (dap-mode 1)
 (dap-ui-mode 1)
@@ -190,30 +122,8 @@
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-;; Use php ts mode.
-;; (use-package php-ts-mode
-;;   :mode ("\\.php$" . php-ts-mode)
-;;   :hook (php-ts-mode . eglot-ensure)
-;;   :config
-;;   (with-eval-after-load 'apheleia
-;;     (setf (alist-get 'phpcs apheleia-formatters)
-;;           '("composer" "--no-interaction" (concat "--working-dir=" (r/project-root))
-;;             "exec" "php-cs-fixer" "fix" "--quiet" (buffer-file-name)))))
 
 
-
-
-
-(use-package rjsx-mode
-  :ensure t
-  :mode "\\.js\\'")
-
-(use-package web-mode
-  :ensure t
-  :mode "\\.twig\\'")
-
-(use-package sass-mode
-  :ensure t)
 
 (defun kill-dired-buffers ()
      (interactive)
@@ -224,7 +134,6 @@
 
 
 (use-package org)
-;; (use-package hlinum)
 
 (global-nlinum-mode 1)
 
