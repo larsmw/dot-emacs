@@ -14,6 +14,8 @@
 (add-to-list 'load-path config-dir)
 
 (load (expand-file-name "core/packages" config-dir))
+(load (expand-file-name "core/ui" config-dir))
+(load (expand-file-name "core/vc" config-dir))
 (load (expand-file-name "web/webmode" config-dir))
 (load (expand-file-name "web/phpmode" config-dir))
 
@@ -21,43 +23,6 @@
 ;; Duplicate line
 (global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y")
 
-;;; Set global fonts
-(custom-set-faces
- '(default (
-            (t (
-                :inherit nil
-                         :extend nil
-                         :stipple nil
-                         :background "#2e3436"
-                         :foreground "#eeeeec"
-                         :inverse-video nil
-                         :box nil
-                         :strike-through nil
-                         :overline nil
-                         :underline nil
-                         :slant normal
-                         :weight light
-                         :height 100
-                         :width normal
-                         :foundry "JB"
-                         :family "JetBrains Mono")))
-           )
- )
-
-
-
-
-;;; Buffer configuration
-(tool-bar-mode -1)
-
-(use-package which-key
-  :ensure t
-  :config (which-key-mode))
-
-
-(show-paren-mode 1)
-
-(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
 (use-package auto-complete
   :ensure t
@@ -155,6 +120,12 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(ac-php consult-eglot consult-projectile counsel csv-mode dap-mode
-            dape dired-git dired-git-info flycheck ggtags magit
-            nginx-mode phpinspect rjsx-mode sass-mode web-mode
+            dape diff-hl dired-git dired-git-info flycheck ggtags
+            magit nginx-mode phpinspect rjsx-mode sass-mode web-mode
             yaml-mode yasnippet-snippets)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#2e3436" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 100 :width normal :foundry "JB" :family "JetBrains Mono")))))
