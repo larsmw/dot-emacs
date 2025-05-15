@@ -4,5 +4,12 @@
 .emacs.d/session*
 .emacs.d/projectile-bookmarks.eld
 .emacs.d/ac-comphist.dat
+.emacs.d/dap-mode
 .emacs.d/projects
 .emacs.d/transient/**
+.emacs.d/.dap-breakpoints
+.emacs.d/.last-package-update-day
+.emacs.d/network-security.eld
+.emacs.d/bookmarks.eld
+.emacs.d/.lsp-session-v1
+.emacs.d/tramp

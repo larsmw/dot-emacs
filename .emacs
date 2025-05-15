@@ -88,6 +88,11 @@
 (setq-default indent-tabs-mode nil)
 
 
+;; (depends-on "puppet-mode")
+;;(use-package puppet-mode
+;;  :ensure t)
+
+;; (add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode)
 
 
 (defun kill-dired-buffers ()
@@ -113,20 +118,5 @@
 (global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
 
 ;;; .emacs ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(ac-php consult-eglot consult-projectile counsel csv-mode dap-mode
-            dape diff-hl dired-git dired-git-info flycheck ggtags
-            magit nginx-mode phpinspect rjsx-mode sass-mode web-mode
-            yaml-mode yasnippet-snippets))
- '(safe-local-variable-values '((byte-compile-warning))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#2e3436" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 100 :width normal :foundry "JB" :family "JetBrains Mono")))))
+
+

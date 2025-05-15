@@ -5,10 +5,13 @@
 
 ;;; Start package configuration
 (add-to-list 'package-archives
-             '(("org"   . "https://orgmode.org/elpa/")
-               ("elpa"  . "https://elpa.org/packages/")
-               ("gnu-devel" . "https://elpa.gnu.org/devel")
-	     ))
+             '("org" . "https://orgmode.org/elpa/") t)
+(add-to-list 'package-archives
+             '("elpa"  . "https://elpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa"  . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("gnu-devel" . "https://elpa.gnu.org/devel") t)
 
 (package-initialize)
 
@@ -17,7 +20,6 @@
 
 (add-to-list 'load-path "~/.emacs.d/elpa/")
 (add-to-list 'load-path "~/.emacs.d/dap-mode/")
-;; (add-to-list 'load-path "~/.emacs.d/counsel-projectile")
 (add-to-list 'load-path "~/.emacs.d/php-mode/")
 
 
