@@ -13,3 +13,4 @@
 .emacs.d/bookmarks.eld
 .emacs.d/.lsp-session-v1
 .emacs.d/tramp
+.emacs.d/auto-save-list/**
