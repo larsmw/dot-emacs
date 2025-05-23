@@ -35,5 +35,5 @@
               (tide-hl-identifier-mode)
               (flycheck-mode)
               (eldoc-mode)
-              (company-mode))))
+              (ivy-mode))))
 )

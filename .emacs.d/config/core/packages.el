@@ -4,14 +4,10 @@
 (require 'package)
 
 ;;; Start package configuration
-(add-to-list 'package-archives
-             '("org" . "https://orgmode.org/elpa/") t)
-(add-to-list 'package-archives
-             '("elpa"  . "https://elpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("melpa"  . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("gnu-devel" . "https://elpa.gnu.org/devel") t)
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("elpa"  . "https://elpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa"  . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("gnu-devel" . "https://elpa.gnu.org/devel") t)
 
 (package-initialize)
 
@@ -32,3 +28,4 @@
   :config
     (auto-package-update-maybe)
     (auto-package-update-at-time "20:50"))
+
