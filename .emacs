@@ -107,6 +107,7 @@
 ;; (global-set-key (kbd "C-x -") 'treesit-fold-close)
 
 
+(desktop-save-mode 1)
 
 
 
@@ -139,17 +140,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(ac-php centaur-tabs consult-eglot consult-projectile corfu
-            counsel-projectile csv-mode dap-mode dape diff-hl
-            dired-git dired-git-info flycheck-phpstan ggtags gptel
-            magit nginx-mode nlinum orderless phpinspect rjsx-mode
-            sass-mode tree-sitter treesit-fold web-mode yaml-mode
-            yasnippet-snippets))
- '(safe-local-variable-values '((byte-compile-warning))))
+ '(package-vc-selected-packages
+   '((auto-package-update :url
+			  "https://github.com/rranelli/auto-package-update.el.git"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#2e3436" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 100 :width normal :foundry "JB" :family "JetBrains Mono")))))
+ )

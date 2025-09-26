@@ -7,8 +7,9 @@
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("elpa"  . "https://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives '("melpa"  . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable"  . "https://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives '("gnu-devel" . "https://elpa.gnu.org/devel") t)
-
+(package-refresh-contents)
 (package-initialize)
 
 (eval-when-compile
@@ -19,6 +20,12 @@
 (add-to-list 'load-path "~/.emacs.d/php-mode/")
 
 ;;; Fetch updates for packages
+(unless (file-directory-p "~/.emacs.d/elpa/auto-package-update/") 
+  (package-vc-install
+   '(auto-package-update :url "https://github.com/rranelli/auto-package-update.el.git"
+		       ))
+)
+
 (use-package auto-package-update
   :custom
     (auto-package-update-interval 2)

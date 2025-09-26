@@ -25,6 +25,12 @@
 
 ;;; Buffer configuration
 
+;;; Fetch from https://github.com/auto-complete/auto-complete.git
+(unless (file-directory-p "~/.emacs.d/elpa/auto-complete/") 
+  (package-vc-install
+    '(auto-complete :url "https://github.com/auto-complete/auto-complete.git"
+  		    :listp-dir "lisp"))
+  )
 (use-package auto-complete
   :ensure t
   :init
