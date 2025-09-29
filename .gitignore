@@ -17,4 +17,4 @@
 .emacs.d/auto-save-list/**
 .emacs.d/session.*
 .emacs.d/eshell
-.emacs.d/ts-fold-0.4.0
+.emacs.d/.extension/**
