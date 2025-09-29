@@ -1,9 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 
 
-(use-package rjsx-mode
-  :ensure t
-  :mode "\\.js\\'")
+;; (use-package rjsx-mode
+;;  :ensure t
+;;  :mode "\\.js\\'")
 
 ;;(use-package web-mode
 ;;  :ensure t
@@ -12,11 +12,14 @@
 (use-package sass-mode
   :ensure t)
 
+(use-package twig-mode
+  :ensure t)
+
 
 (use-package web-mode
   :ensure t
   :mode (("\\.html?\\'" . web-mode)
-         ("\\.twig\\'" . web-mode)
+         ("\\.twig\\'" . twig-mode)
          ("\\.jsx\\'" . web-mode))
   :config
   (setq web-mode-markup-indent-offset 2

@@ -1,5 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
+(unless (package-installed-p 'projectile)
+  (package-install 'projectile))
+
 (use-package projectile
 	     :diminish projectile-mode
 	     :config (projectile-mode)

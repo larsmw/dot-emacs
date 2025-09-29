@@ -1,18 +1,18 @@
 ;; -*- lexical-binding: t; -*-
 
-(use-package lsp-mode
-  :ensure t
-  :config
-  (setq lsp-headerline-breadcrumb-enable nil) ;; works
-  (setq lsp-enable-symbol-highlighting nil) ;; works
-  (setq lsp-signature-render-documentation nil)
-  (setq lsp-completion-provider :none) ;; works
-  (setq lsp-diagnostics-provider :flymake) ;; underline error
-  (setq lsp-clients-php-server-command "/home/lars/bin/phpactor")
-  )
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :config
+;;  (setq lsp-headerline-breadcrumb-enable nil) ;; works
+;;  (setq lsp-enable-symbol-highlighting nil) ;; works
+;;  (setq lsp-signature-render-documentation nil)
+;;  (setq lsp-completion-provider :none) ;; works
+;;  (setq lsp-diagnostics-provider :flymake) ;; underline error
+;;  (setq lsp-clients-php-server-command "/home/lars/bin/phpactor")
+;;  )
 
 
-(require 'lsp-mode)
+;;; (require 'lsp-mode)
 (add-hook 'php-mode-hook #'lsp)
 
 (use-package dap-php)
@@ -20,10 +20,10 @@
 (require 'php-mode)
 (define-key php-mode-map (kbd "C-c g") 'ac-php-find-symbol-at-point)
 
-(with-eval-after-load 'lsp-mode
-  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-  (require 'dap-php)
-  (yas-global-mode))
+;; (with-eval-after-load 'lsp-mode
+;;  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+;;  (require 'dap-php)
+;;  (yas-global-mode))
 
 (defun my-php-mode-setup ()
   "My PHP-mode hook."
