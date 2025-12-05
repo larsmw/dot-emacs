@@ -20,23 +20,21 @@
 (load (expand-file-name "web/phpmode" config-dir))
 (load (expand-file-name "ai/llm" config-dir))
 
-
-;; Duplicate line
-(global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y")
-
-
-;;; .emacs ends here
+(ffap-bindings)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(package-selected-packages nil)
  '(package-vc-selected-packages
-   '((dap-mode :url "https://github.com/emacs-lsp/dap-mode.git"))))
+   '((dap-mode :url "https://github.com/emacs-lsp/dap-mode.git")))
+ '(safe-local-variable-values
+   '((flycheck-emacs-lisp-load-path . inherit) (byte-compile-warning))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#2e3436" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 100 :width normal :foundry "JB" :family "JetBrains Mono")))))

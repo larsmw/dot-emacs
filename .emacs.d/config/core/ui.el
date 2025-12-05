@@ -38,11 +38,10 @@
     (global-auto-complete-mode t)
     )
 
-(use-package counsel
-  :ensure t
-  )
-  ;; search the buffer or all buffer
-
+;; https://github.com/auto-complete/auto-complete/issues/533
+(add-hook 'auto-complete-mode-hook
+          (lambda ()
+            (setq ac-sources (remove 'ac-source-abbrev ac-sources))))
 
 (use-package ivy
   :ensure t
@@ -52,8 +51,22 @@
       (counsel-ag . ivy--regex-plus)
       (counsel-grep-or-swiper . ivy--regex-plus)
       (t . ivy--regex-fuzzy)))
+  :config
+  (ivy-mode 1)
+  :custom
+  (ivy-use-virtual-buffers t)
+  (ivy-display-style 'fancy)
+  :hook
+  (ivy-occur-mode . hl-line-mode)
   )
 
+(use-package counsel
+  :ensure t)
+
+(use-package counsel-etags
+  :ensure t)
+
+;; remember to install ripgrep
 (setq counsel-grep-base-command
       "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
 
@@ -64,6 +77,8 @@
 (load-theme 'tango-dark)
 
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
 
 (use-package which-key
   :ensure t
@@ -79,6 +94,23 @@
   (centaur-tabs-mode t))
 
 (show-paren-mode 1)
+
+(use-package smartparens-mode
+  :ensure t
+  )
+
+(add-hook 'php-mode-hook #'smartparens-mode)
+(add-hook 'phpts-mode-hook #'smartparens-mode)
+
+(global-display-line-numbers-mode 1)
+
+(setq-default tab-width 2)
+(setq-default indent-tabs-mode nil)
+
+;; (global-nlinum-mode 1)
+
+;; This highlights the current line.
+(global-hl-line-mode t)
 
 (use-package swiper
   :ensure t
@@ -105,6 +137,14 @@
   :bind (("C-x C-j" . dired-jump))
   )
 
+
+(when (maybe-require-package 'orderless)
+  (with-eval-after-load 'vertico
+    (require 'orderless)
+    (setq completion-styles '(orderless basic))))
+(setq completion-category-defaults nil
+      completion-category-overrides nil)
+(setq completion-cycle-threshold 4)
 
 ;; Corfu - Completion in region.
 ;; https://github.com/minad/corfu

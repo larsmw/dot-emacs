@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
+(require 'gnutls)
+(add-to-list 'gnutls-trustfiles "/usr/lib/ssl/cert.pem")
 
 (require 'package)
 
@@ -37,6 +39,8 @@
 		       ))
 )
 
+(add-to-list 'load-path "~/.emacs.d/elpa/php-mode/lisp/")
+
 (unless (file-directory-p "~/.emacs.d/elpa/lsp-mode/") 
   (package-vc-install
    '(lsp-mode :url "https://github.com/emacs-lsp/lsp-mode.git"
@@ -52,6 +56,12 @@
 (unless (file-directory-p "~/.emacs.d/elpa/dap-mode/") 
   (package-vc-install
    '(dap-mode :url "https://github.com/emacs-lsp/dap-mode.git"
+		       ))
+)
+
+(unless (file-directory-p "~/.emacs.d/elpa/smartparens/") 
+  (package-vc-install
+   '(dap-mode :url "https://github.com/Fuco1/smartparens.git"
 		       ))
 )
 

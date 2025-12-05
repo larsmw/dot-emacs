@@ -12,10 +12,21 @@
 ;;  )
 
 
-;;; (require 'lsp-mode)
+(require 'lsp-mode)
 (add-hook 'php-mode-hook #'lsp)
 
-(use-package dap-php)
+(use-package dap-mode
+  :ensure t
+  )
+(use-package dap-php
+  :ensure t
+  )
+(use-package eldoc
+  :ensure t
+  )
+(use-package php-eldoc
+  :ensure t
+  )
 
 (require 'php-mode)
 (define-key php-mode-map (kbd "C-c g") 'ac-php-find-symbol-at-point)
@@ -54,7 +65,6 @@
 
 
 
-(dap-mode 1)
 (dap-ui-mode 1)
 (dap-tooltip-mode 1)
 (dap-ui-controls-mode 1)
