@@ -1,5 +1,22 @@
 
+(require 'php-mode)
 
+(use-package php-ts-mode
+  :ensure t
+  )
+
+(add-to-list 'treesit-language-source-alist
+             '(php "https://github.com/tree-sitter/tree-sitter-php" "master" "php/src"))
+
+(define-key php-mode-map (kbd "C-c g") 'ac-php-find-symbol-at-point)
+
+(use-package ac-php
+  :ensure t
+  )
+
+(use-package ac-php-core
+  :ensure t
+  )
 
 (require 'lsp-mode)
 (add-hook 'php-mode-hook #'lsp)
@@ -14,8 +31,7 @@
   :ensure t
   )
 
-(require 'php-mode)
-(define-key php-mode-map (kbd "C-c g") 'ac-php-find-symbol-at-point)
+
 
 ;; (with-eval-after-load 'lsp-mode
 ;;  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
