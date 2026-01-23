@@ -104,6 +104,7 @@
 ;; (add-hook 'phpts-mode-hook #'smartparens-mode)
 
 (global-display-line-numbers-mode 1)
+(desktop-save-mode 1)
 
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)

@@ -3,6 +3,11 @@
 
 (use-package php-ts-mode
   :ensure t
+  :hook ((php-ts-mode . (lambda () (set (make-local-variable 'company-backends)
+       '(;; list of backends
+         company-phpactor
+         company-files
+         )))))
   )
 
 (add-to-list 'treesit-language-source-alist
@@ -15,6 +20,14 @@
   )
 
 (use-package ac-php-core
+  :ensure t
+  )
+
+(use-package phpactor
+  :ensure t
+  )
+
+(use-package company-phpactor
   :ensure t
   )
 
@@ -53,13 +66,9 @@
             (subword-mode 1)
             (yas-global-mode 1)
 
-            (ac-php-core-eldoc-setup)
-
-
-            (define-key php-mode-map (kbd "C-]")
-                       'ac-php-find-symbol-at-point)
-            (define-key php-mode-map (kbd "C-t")
-                       'ac-php-location-stack-back)))
+            (ac-php-core-eldoc-setup) )
+         (add-hook hook (lambda () (lsp)))
+  )
 
 
 (add-to-list 'auto-mode-alist '("\.php$" . php-ts-mode))
