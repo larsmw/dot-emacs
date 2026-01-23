@@ -7,5 +7,5 @@ sudo apt-get install git build-essential autoconf texinfo libpng-dev libwxgtk3.2
 ```
 ```
 libgtk2.0-dev libncurses-dev libgnutls28-dev libgtk-3-dev
-../emacs/configure --prefix=${HOME}/opt/emacs --bindir=${HOME}/opt/bin --with-x --without-pop
+../emacs/configure --prefix=${HOME}/opt/emacs --bindir=${HOME}/opt/bin --with-tree-sitter --with-x --without-pop
 ```
