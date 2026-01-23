@@ -1,23 +1,9 @@
-;; -*- lexical-binding: t; -*-
 
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :config
-;;  (setq lsp-headerline-breadcrumb-enable nil) ;; works
-;;  (setq lsp-enable-symbol-highlighting nil) ;; works
-;;  (setq lsp-signature-render-documentation nil)
-;;  (setq lsp-completion-provider :none) ;; works
-;;  (setq lsp-diagnostics-provider :flymake) ;; underline error
-;;  (setq lsp-clients-php-server-command "/home/lars/bin/phpactor")
-;;  )
 
 
 (require 'lsp-mode)
 (add-hook 'php-mode-hook #'lsp)
 
-(use-package dap-mode
-  :ensure t
-  )
 (use-package dap-php
   :ensure t
   )
@@ -63,11 +49,15 @@
 (add-to-list 'auto-mode-alist '("\.php$" . php-ts-mode))
 (add-to-list 'auto-mode-alist '("\.inc$" . php-ts-mode))
 
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+  (require 'dap-php)
+  (yas-global-mode)
+  )
 
-
+(dap-mode 1)
 (dap-ui-mode 1)
 (dap-tooltip-mode 1)
 (dap-ui-controls-mode 1)
-
 
 (provide 'php-mode)

@@ -16,7 +16,7 @@
                          :underline nil
                          :slant normal
                          :weight light
-                         :height 100
+                         :height 160
                          :width normal
                          :foundry "JB"
                          :family "JetBrains Mono")))
@@ -93,14 +93,15 @@
         )
   (centaur-tabs-mode t))
 
+;; very nice buffer shifting :)
+(global-set-key (kbd "C-x b") 'counsel-switch-buffer)
+
 (show-paren-mode 1)
 
-(use-package smartparens-mode
-  :ensure t
-  )
+;; (require 'smartparens-mode)
 
-(add-hook 'php-mode-hook #'smartparens-mode)
-(add-hook 'phpts-mode-hook #'smartparens-mode)
+;; (add-hook 'php-mode-hook #'smartparens-mode)
+;; (add-hook 'phpts-mode-hook #'smartparens-mode)
 
 (global-display-line-numbers-mode 1)
 
@@ -138,10 +139,10 @@
   )
 
 
-(when (maybe-require-package 'orderless)
-  (with-eval-after-load 'vertico
-    (require 'orderless)
-    (setq completion-styles '(orderless basic))))
+;; (when (maybe-require-package 'orderless)
+;;   (with-eval-after-load 'vertico
+;;     (require 'orderless)
+;;     (setq completion-styles '(orderless basic))))
 (setq completion-category-defaults nil
       completion-category-overrides nil)
 (setq completion-cycle-threshold 4)

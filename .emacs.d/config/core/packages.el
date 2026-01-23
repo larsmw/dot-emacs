@@ -61,7 +61,7 @@
 
 (unless (file-directory-p "~/.emacs.d/elpa/smartparens/") 
   (package-vc-install
-   '(dap-mode :url "https://github.com/Fuco1/smartparens.git"
+   '(smartparens-mode :url "https://github.com/Fuco1/smartparens.git"
 		       ))
 )
 
