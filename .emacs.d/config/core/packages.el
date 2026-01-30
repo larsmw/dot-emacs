@@ -58,7 +58,7 @@
 		       ))
 )
 
-(unless (file-directory-p "~/.emacs.d/elpa/smartparens/") 
+(unless (file-directory-p "~/.emacs.d/elpa/smartparens-mode/") 
   (package-vc-install
    '(smartparens-mode :url "https://github.com/Fuco1/smartparens.git"
 		       ))
