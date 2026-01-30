@@ -43,8 +43,16 @@
           (lambda ()
             (setq ac-sources (remove 'ac-source-abbrev ac-sources))))
 
+(use-package counsel
+  :diminish
+  :ensure t)
+
+(use-package counsel-etags
+  :ensure t)
+
 (use-package ivy
   :ensure t
+  :diminish
   :init
   (setq ivy-re-builders-alist
     '((swiper . ivy--regex-plus)
@@ -53,18 +61,13 @@
       (t . ivy--regex-fuzzy)))
   :config
   (ivy-mode 1)
+  (counsel-mode 1)
   :custom
   (ivy-use-virtual-buffers t)
   (ivy-display-style 'fancy)
   :hook
   (ivy-occur-mode . hl-line-mode)
   )
-
-(use-package counsel
-  :ensure t)
-
-(use-package counsel-etags
-  :ensure t)
 
 ;; remember to install ripgrep
 (setq counsel-grep-base-command
@@ -98,7 +101,9 @@
 
 (show-paren-mode 1)
 
-;; (require 'smartparens-mode)
+(use-package smartparens-mode
+  :ensure t
+  )
 
 ;; (add-hook 'php-mode-hook #'smartparens-mode)
 ;; (add-hook 'phpts-mode-hook #'smartparens-mode)

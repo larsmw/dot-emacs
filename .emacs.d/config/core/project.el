@@ -1,5 +1,13 @@
 ;; -*- lexical-binding: t; -*-
 
+(use-package rg
+  :ensure t
+  )
+
+(use-package ripgrep
+  :ensure t
+  )
+
 (unless (package-installed-p 'projectile)
   (package-install 'projectile))
 

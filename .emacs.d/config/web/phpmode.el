@@ -5,6 +5,7 @@
   :ensure t
   :hook ((php-ts-mode . (lambda ()
                           (auto-complete-mode 1)
+
                           (require 'ac-php)
                           (setq ac-sources '(ac-source-php))
                           (set (make-local-variable 'company-backends)
@@ -12,6 +13,19 @@
          company-phpactor
          company-files
          )))))
+  )
+
+(use-package dap-mode
+  :ensure t
+  )
+(use-package dap-php
+  :ensure t
+  )
+(use-package eldoc
+  :ensure t
+  )
+(use-package php-eldoc
+  :ensure t
   )
 
 (add-to-list 'treesit-language-source-alist
