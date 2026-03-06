@@ -85,6 +85,9 @@
 
 (powerline-default-theme)
 
+(blink-cursor-mode -1)
+(setq ring-bell-function #'ignore)
+
 (use-package which-key
   :ensure t
   :config (which-key-mode))
