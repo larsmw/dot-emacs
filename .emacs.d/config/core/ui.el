@@ -16,7 +16,7 @@
                          :underline nil
                          :slant normal
                          :weight light
-                         :height 160
+                         :height 120
                          :width normal
                          :foundry "JB"
                          :family "JetBrains Mono")))
@@ -83,6 +83,8 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
+(powerline-default-theme)
+
 (use-package which-key
   :ensure t
   :config (which-key-mode))
@@ -101,9 +103,18 @@
 
 (show-paren-mode 1)
 
-(use-package smartparens-mode
-  :ensure t
+(unless (file-directory-p "~/.emacs.d/elpa/smartparens-mode/") 
+  (package-vc-install
+    '(auto-complete :url "https://github.com/Fuco1/smartparens.git"
+  		    :listp-dir "lisp"))
   )
+
+(use-package smartparens
+  :ensure smartparens  ;; install the package
+  :hook (prog-mode text-mode markdown-mode) ;; add `smartparens-mode` to these hooks
+  :config
+  ;; load default config
+  (require 'smartparens-config))
 
 ;; (add-hook 'php-mode-hook #'smartparens-mode)
 ;; (add-hook 'phpts-mode-hook #'smartparens-mode)

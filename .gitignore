@@ -18,3 +18,4 @@
 .emacs.d/session.*
 .emacs.d/eshell
 .emacs.d/.extension/**
+.emacs.d/tree-sitter/**

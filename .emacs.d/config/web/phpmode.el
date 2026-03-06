@@ -18,9 +18,13 @@
 (use-package dap-mode
   :ensure t
   )
-(use-package dap-php
-  :ensure t
+
+(unless (file-directory-p "~/.emacs.d/elpa/dap-mode/") 
+  (package-vc-install
+    '(auto-complete :url "https://github.com/emacs-lsp/dap-mode.git"
+  		    :listp-dir "lisp"))
   )
+
 (use-package eldoc
   :ensure t
   )

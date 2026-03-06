@@ -28,10 +28,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages nil)
- '(package-vc-selected-packages
-   '((smartparens-mode :url "https://github.com/Fuco1/smartparens.git")))
- '(safe-local-variable-values
-   '((flycheck-emacs-lisp-load-path . inherit) (byte-compile-warning))))
+ '(safe-local-variable-values '((byte-compile-warning))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
