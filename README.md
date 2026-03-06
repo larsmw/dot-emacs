@@ -3,7 +3,7 @@
 I am using a home compiled emacs with the following configure cmd:
 
 ```
-sudo apt-get install git build-essential autoconf texinfo libpng-dev libwxgtk3.2-dev libx11-dev libxpm-dev libjpeg-dev libpng-dev libgif-dev libtiff-dev ```
+sudo apt-get install git build-essential autoconf texinfo libpng-dev libwxgtk3.2-dev libx11-dev libxpm-dev libjpeg-dev libpng-dev libgif-dev libtiff-dev libtree-sitter-dev```
 ```
 ```
 libgtk2.0-dev libncurses-dev libgnutls28-dev libgtk-3-dev
