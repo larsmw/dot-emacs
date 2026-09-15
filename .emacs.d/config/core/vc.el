@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t;-*-
 
+;;; Code:
 ;; Magit configuration
 (use-package magit
   :ensure t
@@ -34,3 +35,4 @@
 
 
 (provide 'vc)
+;;; vc.el ends here

@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
+;;; Code:
 (require 'gnutls)
 (add-to-list 'gnutls-trustfiles "/usr/lib/ssl/cert.pem")
 
@@ -19,20 +20,20 @@
 (add-to-list 'load-path "~/src/github/org-mode/lisp")
 
 ;;; Fetch updates for packages
-(unless (file-directory-p "~/.emacs.d/elpa/auto-package-update/") 
+(unless (file-directory-p "~/.emacs.d/elpa/auto-package-update/")
   (package-vc-install
    '(auto-package-update :url "https://github.com/rranelli/auto-package-update.el.git"
 		       ))
 )
 
 ;;; https://github.com/milkypostman/powerline.git
-(unless (file-directory-p "~/.emacs.d/elpa/powerline/") 
+(unless (file-directory-p "~/.emacs.d/elpa/powerline/")
   (package-vc-install
    '(powerline :url "https://github.com/milkypostman/powerline.git"
 		       ))
 )
 
-(unless (file-directory-p "~/.emacs.d/elpa/centaur-tabs/") 
+(unless (file-directory-p "~/.emacs.d/elpa/centaur-tabs/")
   (package-vc-install
    '(centaur-tabs :url "https://github.com/ema2159/centaur-tabs.git"
 		       ))
@@ -40,25 +41,25 @@
 
 (add-to-list 'load-path "~/.emacs.d/elpa/php-mode/lisp/")
 
-(unless (file-directory-p "~/.emacs.d/elpa/lsp-mode/") 
+(unless (file-directory-p "~/.emacs.d/elpa/lsp-mode/")
   (package-vc-install
    '(lsp-mode :url "https://github.com/emacs-lsp/lsp-mode.git"
 		       ))
 )
 
-(unless (file-directory-p "~/.emacs.d/elpa/php-mode/") 
+(unless (file-directory-p "~/.emacs.d/elpa/php-mode/")
   (package-vc-install
    '(php-mode :url "https://github.com/emacs-php/php-mode.git"
 		       ))
 )
 
-(unless (file-directory-p "~/.emacs.d/elpa/dap-mode/") 
+(unless (file-directory-p "~/.emacs.d/elpa/dap-mode/")
   (package-vc-install
    '(dap-mode :url "https://github.com/emacs-lsp/dap-mode.git"
 		       ))
 )
 
-(unless (file-directory-p "~/.emacs.d/elpa/smartparens-mode/") 
+(unless (file-directory-p "~/.emacs.d/elpa/smartparens-mode/")
   (package-vc-install
    '(smartparens-mode :url "https://github.com/Fuco1/smartparens.git"
 		       ))
