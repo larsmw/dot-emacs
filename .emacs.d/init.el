@@ -1,9 +1,7 @@
 ;;; package --- Summary  -*- lexical-binding: t; byte-compile-warning: nil; flycheck-emacs-lisp-load-path: inherit;  -*-
 
-
 ;;; Commentary:
 ;;; .emacs - Configuration
-
 
 ;;; Code:
 
@@ -28,10 +26,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages nil)
- '(safe-local-variable-values '((byte-compile-warning))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#2e3436" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 160 :width normal :foundry "JB" :family "JetBrains Mono")))))
+ '(safe-local-variable-values
+   '((flycheck-emacs-lisp-load-path . inherit) (byte-compile-warning))))

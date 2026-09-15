@@ -1,27 +1,31 @@
 ;; -*- lexical-binding: t; -*-
+;;; ui.el --- User interface configuration
+
+;;; Commentary:
+;; Fonts, themes, completion (Corfu), and navigation (Ivy/Counsel).
+
+;;; Code:
 
 ;;; Set global fonts
 (custom-set-faces
  '(default (
             (t (
                 :inherit nil
-                         :extend nil
-                         :stipple nil
-                         :background "#2e3436"
-                         :foreground "#eeeeec"
-                         :inverse-video nil
-                         :box nil
-                         :strike-through nil
-                         :overline nil
-                         :underline nil
-                         :slant normal
-                         :weight light
-                         :height 120
-                         :width normal
-                         :foundry "JB"
-                         :family "JetBrains Mono")))
-           )
- )
+                :extend nil
+                :stipple nil
+                :background "#2e3436"
+                :foreground "#eeeeec"
+                :inverse-video nil
+                :box nil
+                :strike-through nil
+                :overline nil
+                :underline nil
+                :slant normal
+                :weight light
+                :height 120
+                :width normal
+                :foundry "JB"
+                :family "JetBrains Mono")))))
 
 ;;; Buffer configuration
 
@@ -29,14 +33,13 @@
 (unless (file-directory-p "~/.emacs.d/elpa/auto-complete/") 
   (package-vc-install
     '(auto-complete :url "https://github.com/auto-complete/auto-complete.git"
-  		    :listp-dir "lisp"))
-  )
+		    :listp-dir "lisp")))
+
 (use-package auto-complete
   :ensure t
   :init
     (ac-config-default)
-    (global-auto-complete-mode t)
-    )
+    (global-auto-complete-mode t))
 
 ;; https://github.com/auto-complete/auto-complete/issues/533
 (add-hook 'auto-complete-mode-hook
@@ -54,29 +57,27 @@
   :ensure t
   :diminish
   :init
-  (setq ivy-re-builders-alist
-    '((swiper . ivy--regex-plus)
-      (counsel-ag . ivy--regex-plus)
-      (counsel-grep-or-swiper . ivy--regex-plus)
-      (t . ivy--regex-fuzzy)))
+    (setq ivy-re-builders-alist
+      '((swiper . ivy--regex-plus)
+        (counsel-ag . ivy--regex-plus)
+        (counsel-grep-or-swiper . ivy--regex-plus)
+        (t . ivy--regex-fuzzy)))
   :config
-  (ivy-mode 1)
-  (counsel-mode 1)
+    (ivy-mode 1)
+    (counsel-mode 1)
   :custom
-  (ivy-use-virtual-buffers t)
-  (ivy-display-style 'fancy)
+    (ivy-use-virtual-buffers t)
+    (ivy-display-style 'fancy)
   :hook
-  (ivy-occur-mode . hl-line-mode)
-  )
+    (ivy-occur-mode . hl-line-mode))
 
 ;; remember to install ripgrep
 (setq counsel-grep-base-command
       "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
 
 (global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
+(global-set-key (kbd "C-x b") 'counsel-switch-buffer)
 
-(require 'ivy)
-(ivy-mode 1)
 (load-theme 'tango-dark)
 
 (tool-bar-mode -1)
@@ -95,32 +96,23 @@
 (use-package centaur-tabs
   :ensure t
   :config
-  (setq centaur-tabs-set-icons t
-        centaur-tabs-set-bar 'over
-        centaur-tabs-set-modified-marker t
-        )
-  (centaur-tabs-mode t))
-
-;; very nice buffer shifting :)
-(global-set-key (kbd "C-x b") 'counsel-switch-buffer)
+    (setq centaur-tabs-set-icons t
+          centaur-tabs-set-bar 'over
+          centaur-tabs-set-modified-marker t)
+    (centaur-tabs-mode t))
 
 (show-paren-mode 1)
 
-(unless (file-directory-p "~/.emacs.d/elpa/smartparens-mode/") 
+(unless (file-directory-p "~/.emacs.d/elpa/smartparens/") 
   (package-vc-install
-    '(auto-complete :url "https://github.com/Fuco1/smartparens.git"
-  		    :listp-dir "lisp"))
-  )
+    '(smartparens :url "https://github.com/Fuco1/smartparens.git"
+		    :listp-dir "lisp")))
 
 (use-package smartparens
-  :ensure smartparens  ;; install the package
-  :hook (prog-mode text-mode markdown-mode) ;; add `smartparens-mode` to these hooks
+  :ensure smartparens
+  :hook (prog-mode text-mode markdown-mode)
   :config
-  ;; load default config
-  (require 'smartparens-config))
-
-;; (add-hook 'php-mode-hook #'smartparens-mode)
-;; (add-hook 'phpts-mode-hook #'smartparens-mode)
+    (require 'smartparens-config))
 
 (global-display-line-numbers-mode 1)
 (desktop-save-mode 1)
@@ -128,18 +120,14 @@
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-;; (global-nlinum-mode 1)
-
 ;; This highlights the current line.
 (global-hl-line-mode t)
 
 (use-package swiper
   :ensure t
   :config
-  (ivy-mode)
-  (setq ivy-mode-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-)
+    (setq ivy-mode-virtual-buffers t)
+    (setq enable-recursive-minibuffers t))
 
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
@@ -148,21 +136,9 @@
 (use-package orderless
   :ensure t
   :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
 
-
-(use-package dired
-  :ensure nil
-  :commands (dired dired-jump)
-  :bind (("C-x C-j" . dired-jump))
-  )
-
-
-;; (when (maybe-require-package 'orderless)
-;;   (with-eval-after-load 'vertico
-;;     (require 'orderless)
-;;     (setq completion-styles '(orderless basic))))
 (setq completion-category-defaults nil
       completion-category-overrides nil)
 (setq completion-cycle-threshold 4)
@@ -173,7 +149,7 @@
   :ensure t)
 
 (setq corfu-auto t
-      corfu-quit-no-match 'separator) 
+      corfu-quit-no-match 'separator)
 
 (orderless-define-completion-style orderless-literal-only
   (orderless-style-dispatchers nil)
@@ -185,3 +161,9 @@
                         completion-category-overrides nil
                         completion-category-defaults nil)))
 
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump)))
+
+(provide 'ui)

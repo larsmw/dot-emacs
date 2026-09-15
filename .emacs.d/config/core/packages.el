@@ -1,70 +1,66 @@
 ;; -*- lexical-binding: t; -*-
+;;; packages.el --- Package management configuration
+
+;;; Commentary:
+;; Centralized package installation and configuration.
+;; Uses package-vc-install for git-based packages and MELPA for others.
 
 ;;; Code:
+
 (require 'gnutls)
 (add-to-list 'gnutls-trustfiles "/usr/lib/ssl/cert.pem")
 
 (require 'package)
 
-;;; Start package configuration
-(add-to-list 'package-archives '("elpa"  . "https://elpa.gnu.org/packages/") t)
-(add-to-list 'package-archives '("melpa"  . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable"  . "https://stable.melpa.org/packages/") t)
-;; (package-refresh-contents)
+;;; Package archives
+(add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
 (package-initialize)
 
 (eval-when-compile
   (require 'use-package))
 
-(add-to-list 'load-path "~/.emacs.d/elpa/")
+;;; Load paths
+(add-to-list 'load-path (expand-file-name "elpa/" user-emacs-directory))
 (add-to-list 'load-path "~/src/github/org-mode/lisp")
 
-;;; Fetch updates for packages
-(unless (file-directory-p "~/.emacs.d/elpa/auto-package-update/")
-  (package-vc-install
-   '(auto-package-update :url "https://github.com/rranelli/auto-package-update.el.git"
-		       ))
-)
+;;; Install packages from git
+(defvar my-elpa-dir (expand-file-name "elpa/" user-emacs-directory)
+  "Directory for git-cloned elpa packages.")
 
-;;; https://github.com/milkypostman/powerline.git
-(unless (file-directory-p "~/.emacs.d/elpa/powerline/")
-  (package-vc-install
-   '(powerline :url "https://github.com/milkypostman/powerline.git"
-		       ))
-)
+(defun my-install-package-from-git (pkg dir url)
+  "Install package PKG from git URL, into DIR under my-elpa-dir."
+  (unless (file-directory-p (concat my-elpa-dir dir))
+    (package-vc-install `(,pkg :url ,url))))
 
-(unless (file-directory-p "~/.emacs.d/elpa/centaur-tabs/")
-  (package-vc-install
-   '(centaur-tabs :url "https://github.com/ema2159/centaur-tabs.git"
-		       ))
-)
+;; Core utilities
+(my-install-package-from-git 'auto-package-update "auto-package-update/"
+  "https://github.com/rranelli/auto-package-update.el.git")
 
-(add-to-list 'load-path "~/.emacs.d/elpa/php-mode/lisp/")
+(my-install-package-from-git 'powerline "powerline/"
+  "https://github.com/milkypostman/powerline.git")
 
-(unless (file-directory-p "~/.emacs.d/elpa/lsp-mode/")
-  (package-vc-install
-   '(lsp-mode :url "https://github.com/emacs-lsp/lsp-mode.git"
-		       ))
-)
+(my-install-package-from-git 'centaur-tabs "centaur-tabs/"
+  "https://github.com/ema2159/centaur-tabs.git")
 
-(unless (file-directory-p "~/.emacs.d/elpa/php-mode/")
-  (package-vc-install
-   '(php-mode :url "https://github.com/emacs-php/php-mode.git"
-		       ))
-)
+;; PHP development
+(add-to-list 'load-path (expand-file-name "elpa/php-mode/lisp/" user-emacs-directory))
+(my-install-package-from-git 'lsp-mode "lsp-mode/"
+  "https://github.com/emacs-lsp/lsp-mode.git")
 
-(unless (file-directory-p "~/.emacs.d/elpa/dap-mode/")
-  (package-vc-install
-   '(dap-mode :url "https://github.com/emacs-lsp/dap-mode.git"
-		       ))
-)
+(my-install-package-from-git 'php-mode "php-mode/"
+  "https://github.com/emacs-php/php-mode.git")
 
-(unless (file-directory-p "~/.emacs.d/elpa/smartparens-mode/")
-  (package-vc-install
-   '(smartparens-mode :url "https://github.com/Fuco1/smartparens.git"
-		       ))
-)
+;; Debugging
+(my-install-package-from-git 'dap-mode "dap-mode/"
+  "https://github.com/emacs-lsp/dap-mode.git")
 
+(my-install-package-from-git 'smartparens "smartparens/"
+  "https://github.com/Fuco1/smartparens.git")
+
+;; Auto-package-update configuration
 (use-package auto-package-update
   :custom
     (auto-package-update-interval 2)
@@ -74,3 +70,4 @@
     (auto-package-update-maybe)
     (auto-package-update-at-time "20:50"))
 
+(provide 'packages)
