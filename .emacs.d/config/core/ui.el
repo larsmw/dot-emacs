@@ -16,7 +16,7 @@
                          :underline nil
                          :slant normal
                          :weight light
-                         :height 160
+                         :height 110
                          :width normal
                          :foundry "JB"
                          :family "JetBrains Mono")))
