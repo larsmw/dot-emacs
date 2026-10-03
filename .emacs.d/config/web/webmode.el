@@ -31,12 +31,7 @@
         web-mode-enable-auto-pairing t
         web-mode-enable-comment-keywords t
         web-mode-enable-current-element-highlight t)
-(add-hook 'web-mode-hook
-          (lambda ()
-            (when (string-equal "tsx" (file-name-extension buffer-file-name))
-              (tide-setup)
-              (tide-hl-identifier-mode)
-              (flycheck-mode)
-              (eldoc-mode)
-              (ivy-mode))))
-)
+  )
+
+(provide 'my-webmode)
+;;; webmode.el ends here

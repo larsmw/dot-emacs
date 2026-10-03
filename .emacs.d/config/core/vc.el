@@ -33,4 +33,4 @@
                             (diff-hl-margin-local-mode)))))
 
 
-(provide 'vc)
+(provide 'my-vc)

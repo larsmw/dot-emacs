@@ -18,3 +18,9 @@
 .emacs.d/session.*
 .emacs.d/eshell
 .emacs.d/.extension/**
+.emacs.d/.emacs.desktop
+.emacs.d/.emacs.desktop.lock
+.emacs.d/projectile-frecency.eld
+.emacs.d/projects.eld
+.emacs.d/recentf.eld
+\#*#

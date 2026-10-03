@@ -14,7 +14,7 @@
 (use-package projectile
 	     :diminish projectile-mode
 	     :config (projectile-mode)
-	     :custom ((projectile-completion-system 'ivy))
+	     :custom ((projectile-completion-system 'default))
 	     :bind-keymap
 	       ("C-c p" . projectile-command-map)
 	     :init
@@ -23,10 +23,6 @@
 	     (setq projectile-switch-project-action #'projectile-dired)
        (setq projectile-sort-order 'access-time)
        )
-
-(use-package counsel-projectile
-  :ensure t
-  :config (counsel-projectile-mode))
 
 
 (use-package flymake
@@ -52,8 +48,5 @@
     (flymake-mode 1)
     ))
 
-;; (global-flycheck-mode)
-
-;;(use-package flycheck
-;;  :ensure t
-;;   :config (counsel-projectile-mode))
+(provide 'my-project)
+;;; project.el ends here

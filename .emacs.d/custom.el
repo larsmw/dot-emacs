@@ -6,11 +6,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ac-php auto-package-update centaur-tabs company-php company-phpactor
-            corfu counsel-etags counsel-projectile dap-mode diff-hl
-            flycheck gptel lsp-ui magit orderless php-eldoc
-            plantuml-mode rg ripgrep sass-mode smartparens
-            tree-sitter treesit-fold twig-mode web-mode))
+   '(auto-package-update cape centaur-tabs consult corfu diff-hl embark
+                         embark-consult gptel magit marginalia orderless
+                         plantuml-mode projectile rg ripgrep sass-mode
+                         smartparens tree-sitter treesit-fold twig-mode
+                         vertico web-mode))
  '(safe-local-variable-values
    '((eval font-lock-add-keywords nil
            `

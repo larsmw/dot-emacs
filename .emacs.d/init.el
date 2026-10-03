@@ -20,8 +20,6 @@
 (load (expand-file-name "web/phpmode" config-dir))
 (load (expand-file-name "ai/llm" config-dir))
 
-(ffap-bindings)
-
 ;; Keep Customize settings out of init.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
