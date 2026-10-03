@@ -24,3 +24,4 @@
 .emacs.d/projects.eld
 .emacs.d/recentf.eld
 \#*#
+.emacs.d/debug-adapters

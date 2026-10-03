@@ -16,8 +16,10 @@
 (load (expand-file-name "core/ui" config-dir))
 (load (expand-file-name "core/vc" config-dir))
 (load (expand-file-name "core/project" config-dir))
+(load (expand-file-name "core/ide" config-dir))
 (load (expand-file-name "web/webmode" config-dir))
 (load (expand-file-name "web/phpmode" config-dir))
+(load (expand-file-name "web/php-tools" config-dir))
 (load (expand-file-name "ai/llm" config-dir))
 
 ;; Keep Customize settings out of init.el
