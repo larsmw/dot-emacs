@@ -28,6 +28,17 @@
   :ensure t
   :init (vertico-mode))
 
+;; In file prompts, DEL / M-DEL remove a whole directory component
+(use-package vertico-directory
+  :ensure nil                           ; ships with vertico
+  :after vertico
+  :bind (:map vertico-map
+              ("RET"   . vertico-directory-enter)
+              ("DEL"   . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
+  ;; Typing ~/ or / after a path jumps there, hiding the old part
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
 (use-package savehist
   :ensure nil
   :init (savehist-mode))
@@ -36,6 +47,8 @@
   :ensure t
   :custom
   (completion-styles '(orderless basic))
+  ;; flex: characters in order with gaps, so "evab" finds eval-buffer
+  (orderless-matching-styles '(orderless-literal orderless-regexp orderless-flex))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
@@ -118,9 +131,6 @@
   :bind (("C-x C-j" . dired-jump))
   )
 
-(use-package tree-sitter
-  :ensure t
-  )
 (use-package treesit-fold
   :ensure t
   )

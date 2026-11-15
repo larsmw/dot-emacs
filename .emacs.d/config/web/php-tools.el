@@ -188,10 +188,14 @@ nil means autodetect: \"ddev exec\" in DDEV projects, else the host.")
     '("vendor/bin/phpcbf" "-q"))))
 
 (defun my/php-format ()
-  "Reformat the buffer with the project's fixer, else the language server."
+  "Reformat the buffer with the project's fixer, else the language server.
+The fixer runs on the host when PHP is installed there (no container
+start-up), otherwise in the project's container."
   (interactive)
   (if-let* ((fixer (my/php--fixer)))
       (let* ((default-directory (my/php--root))
+             (host (executable-find "php"))
+             (my/php-exec (if host '("env" "PHP_CS_FIXER_IGNORE_ENV=1") my/php-exec))
              (command (apply #'my/php--command
                              (append fixer (list (my/php--relative buffer-file-name))))))
         (save-buffer)
@@ -202,7 +206,51 @@ nil means autodetect: \"ddev exec\" in DDEV projects, else the host.")
               (error "%s failed: %s" (car fixer) (string-trim (buffer-string))))))
         (revert-buffer t t t)
         (message "Formatted with %s" (file-name-nondirectory (car fixer))))
-    (eglot-format-buffer)))
+    (my/format-buffer)))
+
+;;; Refactoring with phpactor's CLI (needs host PHP).  Rename, extract,
+;;; import etc. are code actions in the language server (M-RET).
+
+(defun my/php--class-transfer (action)
+  "Run phpactor class:ACTION from this buffer's file to a prompted path."
+  (unless (executable-find "phpactor")
+    (user-error "phpactor is not installed"))
+  (let* ((root (my/php--root))
+         (src buffer-file-name)
+         (dest (expand-file-name
+                (read-file-name (format "%s class to: " (capitalize action))
+                                (file-name-directory src) nil nil
+                                (file-name-nondirectory src)))))
+    (when (equal dest src) (user-error "Same file"))
+    (save-some-buffers nil (lambda () (and buffer-file-name
+                                         (file-in-directory-p buffer-file-name root))))
+    (with-temp-buffer
+      (let ((default-directory root))
+        (unless (zerop (process-file
+                        "phpactor" nil t nil (concat "class:" action) "--no-interaction"
+                        (if (file-directory-p (expand-file-name ".git" root))
+                            "--filesystem=git" "--filesystem=simple")
+                        (file-relative-name src root) (file-relative-name dest root)))
+          (error "phpactor class:%s failed: %s" action (string-trim (buffer-string))))))
+    ;; Pick up the reference updates phpactor wrote to other files
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (when (and buffer-file-name (file-in-directory-p buffer-file-name root)
+                   (not (buffer-modified-p)))
+          (if (file-exists-p buffer-file-name)
+              (unless (verify-visited-file-modtime buf) (revert-buffer t t t))
+            (kill-buffer buf)))))
+    (find-file dest)))
+
+(defun my/php-move-class ()
+  "Move this class to another file/namespace and update all references."
+  (interactive)
+  (my/php--class-transfer "move"))
+
+(defun my/php-copy-class ()
+  "Copy this class to another file/namespace."
+  (interactive)
+  (my/php--class-transfer "copy"))
 
 ;;; Composer
 
@@ -248,6 +296,10 @@ nil means autodetect: \"ddev exec\" in DDEV projects, else the host.")
     ("s" "PHPStan project" my/php-phpstan)
     ("S" "PHPStan this file" (lambda () (interactive) (my/php-phpstan buffer-file-name)))
     ("x" "fix code style" my/php-format)]
+   ["Refactor"
+    ("m" "move class" my/php-move-class)
+    ("y" "copy class" my/php-copy-class)
+    ("L" "switch language server" my/php-use-language-server)]
    ["Project"
     ("c" "composer..." my/php-composer)
     ("d" "debug (listen for Xdebug)" my/php-debug-listen)

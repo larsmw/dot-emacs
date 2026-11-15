@@ -12,11 +12,12 @@
 ;;;        :key "not-needed")
 ;;;      )
 (setq gptel-backend
-      (gptel-make-ollama "Ollama"
-        :host "127.0.0.1:11434"
-        :models '(qwen3-coder:30b)
-        :protocol "http"
-        :key "not-needed")
+      (gptel-make-llama-cpp "Llama.cpp"
+                            "localhost:8000"
+                            "models/qwen3-8b.gguf"
+                            "http"
+                            "not-needed"
+                            :n_ctx 2048)
       )
 
 (setq gptel-use-curl t

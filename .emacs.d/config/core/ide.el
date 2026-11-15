@@ -42,7 +42,8 @@
 (defun my/format-buffer ()
   "Reformat the buffer via the language server, else re-indent it."
   (interactive)
-  (if (bound-and-true-p eglot--managed-mode)
+  (if (and (bound-and-true-p eglot--managed-mode)
+           (eglot-server-capable :documentFormattingProvider))
       (eglot-format-buffer)
     (indent-region (point-min) (point-max))))
 

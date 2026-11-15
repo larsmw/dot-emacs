@@ -9,7 +9,7 @@
    '(auto-package-update cape centaur-tabs consult corfu diff-hl embark
                          embark-consult gptel magit marginalia orderless
                          plantuml-mode projectile rg ripgrep sass-mode
-                         smartparens tree-sitter treesit-fold twig-mode
+                         smartparens treesit-fold twig-mode
                          vertico web-mode))
  '(safe-local-variable-values
    '((eval font-lock-add-keywords nil
